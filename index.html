@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" text="text/javascript"></script>
+    <script src="mqtt.js" text="text/javascript"></script>
+    <title>MQTT DASHBOARD</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="formContainer">
+            <h2>MQTT WEBSOCKET</h2>
+            <form>
+                <div class="form-group">
+                    <label for="host">BROKER</label>
+                    <input type="text" name="host" id="host" placeholder="Masukkan Hostname">
+                </div>
+
+                <div class="form-group">
+                    <label for="port">PORT</label>
+                    <input type="number" name="port" id="port" placeholder="Masukkan Port">
+                </div>
+
+                <div class="form-group">
+                    <label for="topic_s">SUBSCRIBE</label>
+                    <input type="text" name="topic_s" id="topic_s" placeholder="Masukkan Topik Subscribe">
+                </div>
+
+                <div class="form-group">
+                    <input type="button" id="btn-connect" value="Connect">
+                </div>
+
+                <div class="form-group">
+                    <label for="topic_p">PUBLISH</label>
+                    <input type="text" name="topic_p" id="topic_p" placeholder="Masukkan Topik Publish">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">PESAN</label>
+                    <input type="text" name="message" id="message" placeholder="Masukkan Pesan">
+                </div>
+
+                <div class="form-group">
+                    <input type="button" value="Publish" onclick="publishMessage()">
+                </div>
+            </form>
+        </div>
+
+        <div id="box">
+            <div id="messages"><span id="noData">Belum Ada Data!</span></div><button id="btn-clear">Clear
+                Output</button>
+        </div>
+
+    </div>
+    <script>
+        var btn_connect = document.getElementById("btn-connect");
+        var btn_clear = document.getElementById("btn-clear");
+
+        btn_connect.addEventListener("click", function () {
+            if (btn_connect.value == "Connect") {
+                startConnect();
+            } else {
+                startDisconnect();
+            }
+        });
+
+        btn_clear.addEventListener("click", function () {
+            document.getElementById("messages").innerHTML = "";
+        });
+    </script>
+
+</body>
+
+</html>
